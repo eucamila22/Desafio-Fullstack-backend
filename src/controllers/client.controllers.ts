@@ -3,6 +3,7 @@ import createClientService from '../services/client/createClient.service'
 import { iClient, iClientUpdate } from '../interfaces/client.interface'
 import listAllClientService from '../services/client/listAllClient.service'
 import updateClientService from '../services/client/updateClient.service'
+import deleteClientService from '../services/client/deleteClient.service'
 
 const createClientController = async (req: Request, res: Response) => {
     const clientData: iClient = req.body
@@ -31,4 +32,16 @@ const updateClientController = async (req: Request, res: Response) => {
     return res.json(updatedClient)
 }
 
-export { createClientController, listAllClientController, updateClientController }
+const deleteClientController = async (req: Request, res: Response) => {
+    const idClient = parseInt(req.params.id)
+    await deleteClientService(idClient)
+
+    return res.status(204).send()
+}
+
+export {
+    createClientController,
+    listAllClientController,
+    updateClientController,
+    deleteClientController,
+}
