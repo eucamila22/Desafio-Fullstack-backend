@@ -1,8 +1,11 @@
 import { Router } from 'express'
-import { createClientController } from '../controllers/client.controllers'
+import { createClientController, listAllClientController, updateClientController } from '../controllers/client.controllers'
 
-const ClientRoutes: Router = Router()
+const clientRoutes: Router = Router()
 
-ClientRoutes.post('', createClientController)
+clientRoutes.post('', createClientController)
+clientRoutes.get('', listAllClientController)
+clientRoutes.patch('/:id', updateClientController)
+// clientRoutes.delete('/:id', deleteClientController)
 
-export default ClientRoutes
+export default clientRoutes

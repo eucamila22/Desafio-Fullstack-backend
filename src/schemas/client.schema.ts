@@ -14,4 +14,6 @@ const returnClientSchema = clientSchema
     })
     .omit({ password: true })
 
-export { clientSchema, returnClientSchema }
+const returnMultipleClientSchema = returnClientSchema.array()
+
+export { clientSchema, returnClientSchema, returnMultipleClientSchema }
