@@ -16,7 +16,7 @@ class Client {
     id: number
 
     @Column({ type: 'varchar', length: 45 })
-    full_name: string
+    name: string
 
     @Column({ type: 'varchar', length: 45, unique: true })
     email: string
@@ -29,7 +29,7 @@ class Client {
 
     @CreateDateColumn({ type: 'date' })
     createdAt: string
-
+   
     @BeforeInsert()
     @BeforeUpdate()
     hashPassword() {

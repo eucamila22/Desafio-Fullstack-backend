@@ -9,7 +9,6 @@ const listAllClientService = async (): Promise<iClientsReturn> => {
     const clients = returnMultipleClientSchema.parse(findClients)
 
     return clients
-
 }
 
 export default listAllClientService

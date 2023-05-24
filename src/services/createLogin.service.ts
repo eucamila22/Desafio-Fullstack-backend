@@ -7,7 +7,6 @@ import { AppDataSource } from '../data-source'
 import { Client } from '../entities/client.entity'
 import { AppError } from '../errors'
 
-
 const createLoginService = async (loginData: iLogin): Promise<string> => {
     const clientRepository: iClientRepo = AppDataSource.getRepository(Client)
     const client: Client | null = await clientRepository.findOneBy({
@@ -26,7 +25,7 @@ const createLoginService = async (loginData: iLogin): Promise<string> => {
 
     const token: string = jwt.sign(
         {
-            // id: client.id,
+            id: client.id,
         },
         process.env.SECRET_KEY!,
         {
