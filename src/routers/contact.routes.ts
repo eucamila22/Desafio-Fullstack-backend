@@ -8,6 +8,7 @@ import {
 } from '../controllers/contact.controller'
 import ensureTokenIsValidMiddleware from '../middlewares/ensureTokenIsValid.middleware'
 import ensureLoggedClientValidateMiddleware from '../middlewares/ensureLoggedClientValidate.middleware'
+import ensureLoggedContactValidateMiddleware from '../middlewares/ensureLoggedContactValidated.middleware'
 
 const contactRoutes: Router = Router()
 
@@ -16,19 +17,19 @@ contactRoutes.get('', listAllContactController)
 contactRoutes.get(
     '/:id',
     ensureTokenIsValidMiddleware,
-    ensureLoggedClientValidateMiddleware,
+    ensureLoggedContactValidateMiddleware,
     listContactByIdController
 )
 contactRoutes.patch(
     '/:id',
     ensureTokenIsValidMiddleware,
-    ensureLoggedClientValidateMiddleware,
+    ensureLoggedContactValidateMiddleware,
     updateContactController
 )
 contactRoutes.delete(
     '/:id',
     ensureTokenIsValidMiddleware,
-    ensureLoggedClientValidateMiddleware,
+    ensureLoggedContactValidateMiddleware,
     deleteContactController
 )
 
