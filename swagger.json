@@ -1,0 +1,387 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "A API de Cadastro de Clientes e Contatos é um sistema que permite criar, consultar, atualizar e excluir informações de clientes e seus contatos. Os clientes são registrados com dados como nome completo, e-mail, telefone e data de registro. Os contatos, vinculados aos clientes, também possuem informações como nome completo, e-mail, telefone e data de registro. A API oferece operações de CRUD, além de um recurso para gerar relatórios com os dados do cliente e seus contatos. A documentação da API inclui informações sobre os endpoints, estruturas de dados, exemplos de uso e configuração do ambiente. O objetivo é fornecer uma solução simples e eficiente para o gerenciamento de clientes e contatos, garantindo a organização e segurança das informações.",
+        "title": "API Documentation",
+        "version": "1.0.0"
+    },
+    "component": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "security": [
+        {
+            "BearerAuth": []
+        }
+    ],
+    "paths": {
+        "/clients": {
+            "get": {
+                "summary": "Get all clients",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of clients"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new client",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClientCreateSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Client created successfully"
+                    }
+                }
+            }
+        },
+        "/clients/{id}": {
+            "get": {
+                "summary": "Get a client by ID",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Client found"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update a client by ID",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClientUpdateSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Client updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a client by ID",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Client deleted successfully"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "summary": "Create a login",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateLoginSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login created successfully"
+                    }
+                }
+            }
+        },
+        "/contacts": {
+            "post": {
+                "summary": "Create a new contact",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ContactCreateSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Contact created successfully"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Get all contacts",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of contacts"
+                    }
+                }
+            }
+        },
+        "/contacts/{id}": {
+            "get": {
+                "summary": "Get a contact by ID",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Contact found"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update a contact by ID",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ContactUpdateSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Contact updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a contact by ID",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Contact deleted successfully"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ClientCreateSchema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 45
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "minLength": 3,
+                        "maxLength": 45
+                    },
+                    "phone": {
+                        "type": "string",
+                        "minLength": 8
+                    },
+                    "password": {
+                        "type": "string",
+                        "minLength": 4,
+                        "maxLength": 20
+                    }
+                }
+            },
+            "ClientUpdateSchema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 45
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "minLength": 3,
+                        "maxLength": 45
+                    },
+                    "phone": {
+                        "type": "string",
+                        "minLength": 8
+                    },
+                    "password": {
+                        "type": "string",
+                        "minLength": 4,
+                        "maxLength": 20
+                    }
+                }
+            },
+            "CreateLoginSchema": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "minLength": 10,
+                        "maxLength": 45
+                    },
+                    "password": {
+                        "type": "string",
+                        "minLength": 4,
+                        "maxLength": 20
+                    }
+                }
+            },
+            "ContactCreateSchema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 45
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "minLength": 3,
+                        "maxLength": 45
+                    },
+                    "phone": {
+                        "type": "string",
+                        "minLength": 8
+                    }
+                }
+            },
+            "ContactUpdateSchema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 45
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "minLength": 3,
+                        "maxLength": 45
+                    },
+                    "phone": {
+                        "type": "string",
+                        "minLength": 8
+                    }
+                }
+            }
+        }
+    }
+}
