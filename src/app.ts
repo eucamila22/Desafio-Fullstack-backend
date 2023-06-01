@@ -7,6 +7,7 @@ import loginRoutes from './routers/login.routes'
 import contactRoutes from './routers/contact.routes'
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocument from '../swagger.json'
+import { reportRoutes } from './routers/report.routes'
 
 const app: Application = express()
 app.use(cors())
@@ -15,9 +16,9 @@ app.use(express.json())
 app.use('/clients', clientRoutes)
 app.use('/login', loginRoutes)
 app.use('/contacts', contactRoutes)
+app.use('/report', reportRoutes)
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-
 
 app.use(handleErrors)
 export default app

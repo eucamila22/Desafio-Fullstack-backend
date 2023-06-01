@@ -34,5 +34,8 @@
         "typeorm": "^0.3.16",
         "typescript": "^5.0.4",
         "zod": "^3.21.4"
+    },
+    "devDependencies": {
+        "@types/pdfkit": "^0.12.9"
     }
 }
